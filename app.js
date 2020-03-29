@@ -1,7 +1,8 @@
 //Requires
 var express = require('express');
 var mongoose = require('mongoose');
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
+var cors = require('cors')
 
 //Importando rutas
 var appRoutes = require('./routes/app');
@@ -17,6 +18,18 @@ var imagenesRoutes = require('./routes/imagenes');
 
 //Inicializando variables
 var app = express();
+
+//CORS
+app.use(cors({ origin: "http://localhost:4200" }));
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-COntrol-Allow-Request-Method');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+    next();
+}) 
+
+
 
 //Body parser
 app.use(bodyParser.urlencoded({ extended: false }));

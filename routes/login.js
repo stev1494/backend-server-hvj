@@ -130,6 +130,7 @@ app.post('/google', (req, res) => {
 app.post('/', (req, res)=>{
 
     var body = req.body;
+    console.log('Este es el body:', body);
 
     Usuario.findOne({email: body.email}, (err, usuarioDB)=>{
         
@@ -148,7 +149,9 @@ app.post('/', (req, res)=>{
                 errors: err
             });
         }
-
+        // console.log('Este es Body.password:', body.password);
+        // console.log('Este es el UsuarioDB.password:', usuarioDB.password);
+        
         if( !bcrypt.compareSync( body.password, usuarioDB.password) ){
             return res.status(400).json({
                 ok: false,

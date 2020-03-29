@@ -89,10 +89,9 @@ app.put('/:id', mdAuth.verficaToken , (req, res)=>{
 });
 
 
-app.post('/', mdAuth.verficaToken ,(req, res)=>{
+app.post('/' ,(req, res)=>{
 
     var body = req.body;
-
     var usuario = new Usuario({
         nombre: body.nombre,
         email: body.email,
